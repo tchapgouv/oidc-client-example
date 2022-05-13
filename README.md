@@ -1,3 +1,3 @@
 # PoC Node auth
 
-Demo app for testing OIDC flow 'code'
+Demo app (Node + express) for testing OIDC flow 'code'
