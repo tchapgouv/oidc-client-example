@@ -1,0 +1,66 @@
+<%- include('partials/header.ejs'); %>
+<div>
+    <header role="banner" class="fr-header">
+        <div class="fr-header__body">
+            <div class="fr-container">
+                <div class="fr-header__body-row">
+                    <div class="fr-header__brand fr-enlarge-link">
+                        <div class="fr-header__brand-top">
+                            <div class="fr-header__logo">
+                                <p class="fr-logo">
+                                    Ministère du test
+                                </p>
+                            </div>
+                            <div class="fr-header__navbar">
+                                <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-833"
+                                        aria-haspopup="menu" title="Menu" id="fr-btn-menu-mobile">
+                                    Menu
+                                </button>
+                            </div>
+                        </div>
+                        <div class="fr-header__service">
+                            <a href="/" title="Accueil - L'app du futur - Ministère du test">
+                                <p class="fr-header__service-title">L'app du futur</p>
+                            </a>
+                            <p class="fr-header__service-tagline"></p>
+                        </div>
+                    </div>
+                    <div class="fr-header__tools">
+                        <div class="fr-header__tools-links">
+                            <ul class="fr-links-group">
+                                <% if (userEmail) {%>
+                                <li>
+                                    <a class="fr-link fr-fi-add-circle-line" href="">
+                                        Connecté en tant que: <%= userEmail %>
+                                    </a>
+                                </li>
+                                <% } else {%>
+                                <li>
+                                    <a class="fr-link fr-fi-add-circle-line" href="<%= loginUrl %>">
+                                        Se connecter
+                                    </a>
+                                </li>
+                                <% } %>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="fr-connect-group">
+        <button class="fr-connect">
+            <span class="fr-connect__login">S’identifier avec</span>
+            <span class="fr-connect__brand">Tchap Identité</span>
+        </button>
+        <p>
+            <a href="https://franceconnect.gouv.fr/" target="_blank" rel="noopener"
+               title="Qu’est ce que Tchap Identité ? - nouvelle fenêtre">Qu’est ce que Tchap Identité ?</a>
+        </p>
+    </div>
+</div>
+<%- include('partials/footer.ejs') %>
+
+
+
