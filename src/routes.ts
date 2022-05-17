@@ -1,11 +1,20 @@
 import {Router} from "express";
 import {generators, Issuer} from 'openid-client';
 import {appUrl} from "./config/config";
+import {getSystemErrorMap} from "util";
 
-const PROVIDER_URL = 'http://localhost:5000';
-const CLIENT_SECRET = 'baz';
-const CLIENT_ID = 'bar';
-const CALLBACK_URL = '/cb';
+const PROVIDER_URL="https://dev.identite.tchap.incubateur.net/realms/tchap-identite/.well-known/openid-configuration"
+const CLIENT_SECRET=""
+const CLIENT_ID="tchap-identite-client"
+const CALLBACK_URL="/cb"
+const userEmail = ""
+/*
+const PROVIDER_URL="http://localhost:8080/realms/tchap-identite/.well-known/openid-configuration"
+const CLIENT_SECRET=""
+const CLIENT_ID="tchap-identite-client"
+const CALLBACK_URL="/cb"
+*/
+
 
 const getClient = async () => {
     const issuer = await Issuer.discover(PROVIDER_URL);
@@ -27,7 +36,7 @@ const demoRouter = Router();
 
 demoRouter.get('/', async (req, res) => {
     return res.render('home', {
-        loginUrl: appUrl + '/login',
+        loginUrl: appUrl + '/login?email='+userEmail,
         userEmail: req.session.user
     });
 });
@@ -66,10 +75,10 @@ demoRouter.get('/cb', async (req, res) => {
     // console.log('validated ID Token claims %j', tokenSet.claims());
 
     const { access_token } = tokenSet;
-
+    console.log('access_token %j', access_token);
     const userinfo = await client.userinfo(access_token!);
-    req.session.user = userinfo.email || 'default_email';
-    // console.log('userinfo %j', userinfo);
+    req.session.user = userinfo.preferred_username || 'default_email';
+    console.log('userinfo %j', userinfo);
 
     return res.redirect('/')
 });

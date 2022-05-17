@@ -36,9 +36,7 @@
                                 </li>
                                 <% } else {%>
                                 <li>
-                                    <a class="fr-link fr-fi-add-circle-line" href="<%= loginUrl %>">
-                                        Se connecter
-                                    </a>
+                                    non connecté
                                 </li>
                                 <% } %>
                             </ul>
@@ -50,10 +48,13 @@
     </header>
 
     <div class="fr-connect-group">
-        <button class="fr-connect">
+    <a class="fr-link fr-fi-add-circle-line" href="<%= loginUrl %>">
+                                                                          Se connecter
+                                                                      </a>
+  <!--       <button class="fr-connect" >
             <span class="fr-connect__login">S’identifier avec</span>
             <span class="fr-connect__brand">Tchap Identité</span>
-        </button>
+        </button> -->
         <p>
             <a href="https://franceconnect.gouv.fr/" target="_blank" rel="noopener"
                title="Qu’est ce que Tchap Identité ? - nouvelle fenêtre">Qu’est ce que Tchap Identité ?</a>
