@@ -1,0 +1,51 @@
+<header role="banner" class="fr-header">
+    <div class="fr-header__body">
+        <div class="fr-container">
+            <div class="fr-header__body-row">
+                <div class="fr-header__brand fr-enlarge-link">
+                    <div class="fr-header__brand-top">
+                        <div class="fr-header__logo">
+                            <p class="fr-logo">
+                                Ministère du test
+                            </p>
+                        </div>
+                        <div class="fr-header__navbar">
+                            <button class="fr-btn--menu fr-btn" data-fr-opened="false" aria-controls="modal-833"
+                                    aria-haspopup="menu" title="Menu" id="fr-btn-menu-mobile">
+                                Menu
+                            </button>
+                        </div>
+                    </div>
+                    <div class="fr-header__service">
+                        <a href="/" title="Accueil - L'app du futur - Ministère du test">
+                            <p class="fr-header__service-title">L'app du futur</p>
+                        </a>
+                        <p class="fr-header__service-tagline"></p>
+                    </div>
+                </div>
+                <div class="fr-header__tools">
+                    <div class="fr-header__tools-links">
+                        <ul class="fr-links-group">
+                            <% if (userEmail) { %>
+                                <li>
+                                    <span class="fr-link" href="">
+                                        Connecté en tant que: <%= userEmail %>
+                                    </span>
+                                </li>
+                                <li>
+                                    <a class="fr-link fr-icon-logout-box-r-fill" href="/logout">
+                                        Déconnexion
+                                    </a>
+                                </li>
+                            <% } else { %>
+                                <li>
+                                    non connecté
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
