@@ -14,6 +14,8 @@ import {appUrl} from "./config/config";
 // const CLIENT_ID = "tchap-identite-client"
 // const CALLBACK_URL = "/cb"
 
+const urlCallback = "/cb";
+
 const getClient = async () => {
     console.log(process.env.PROVIDER_URL)
     const issuer = await Issuer.discover(process.env.PROVIDER_URL!);
@@ -22,7 +24,7 @@ const getClient = async () => {
     const client = new issuer.Client({
         client_id: process.env.CLIENT_ID!,
         client_secret: process.env.CLIENT_SECRET!,
-        redirect_uris: [appUrl + process.env.CALLBACK_URL!],
+        redirect_uris: [appUrl + urlCallback],
         response_types: ['code'],
         // id_token_signed_response_alg (default "RS256")
         // token_endpoint_auth_method (default "client_secret_basic")
@@ -74,7 +76,7 @@ export const callbackController: RequestHandler = async (req, res) => {
 
     // if (!params || !req.session.code_verifier) return res.redirect('/');
 
-    const tokenSet = await client.callback(appUrl + process.env.CALLBACK_URL, params, {code_verifier: req.session.code_verifier});
+    const tokenSet = await client.callback(appUrl + urlCallback, params, {code_verifier: req.session.code_verifier});
     req.session.code_verifier = undefined;
     // console.log('received and validated tokens %j', tokenSet);
     // console.log('validated ID Token claims %j', tokenSet.claims());
