@@ -32,11 +32,16 @@ const getClient = async () => {
 }
 
 export const homeController: RequestHandler = async (req, res) => {
-    const userEmail = ''; //fixme
+    let userEmail = null;
+    if (req.session.access_token) {
+        const client = await getClient();
+        const userinfo = await client.userinfo(req.session.access_token);
+        userEmail = userinfo.preferred_username || userinfo.sub
+    }
 
     return res.render('home', {
-        loginUrl: appUrl + '/login?email=' + userEmail,
-        userEmail: req.session.user
+        loginUrl: appUrl + '/login',
+        userEmail
     });
 };
 
@@ -75,11 +80,11 @@ export const callbackController: RequestHandler = async (req, res) => {
     // console.log('validated ID Token claims %j', tokenSet.claims());
 
     const {access_token} = tokenSet;
-    console.log('access_token %j', access_token);
-    const userinfo = await client.userinfo(access_token!);
-    req.session.user = userinfo.preferred_username || 'default_email';
+    // console.log('access_token %j', access_token);
+    // const userinfo = await client.userinfo(access_token!);
+    // req.session.user = userinfo.preferred_username || 'default_email';
     req.session.access_token = access_token;
-    console.log('userinfo %j', userinfo);
+    // console.log('userinfo %j', userinfo);
 
     return res.redirect('/')
 };

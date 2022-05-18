@@ -24,7 +24,10 @@ const server = () => {
             cookie: {secure: false} // fixme: not for prod
         },
     ))
-    app.use(helmet());
+    app.use(helmet({
+        contentSecurityPolicy: false,
+    }));
+
     app.set('trust proxy', 1);
 
     app.use(demoRouter);
