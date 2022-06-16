@@ -32,6 +32,7 @@ export const homeController: RequestHandler = async (req, res) => {
 
     return res.render('home', {
         loginUrl: appUrl + '/login',
+        emailDefault : process.env.EMAIL_DEFAULT || "aaa.bbb@beta.gouv.fr",
         userEmail
     });
 };
