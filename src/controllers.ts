@@ -3,17 +3,6 @@ import {RequestHandler} from "express";
 import {generators, Issuer} from "openid-client";
 import {appUrl} from "./config/config";
 
-// const PROVIDER_URL="https://dev.identite.tchap.incubateur.net/realms/tchap-identite/.well-known/openid-configuration"
-// const CLIENT_SECRET=""
-// const CLIENT_ID="tchap-identite-client"
-// const CALLBACK_URL="/cb"
-// const userEmail = ""
-
-// const PROVIDER_URL = "http://localhost:8080/realms/tchap-identite/.well-known/openid-configuration"
-// const CLIENT_SECRET = ""
-// const CLIENT_ID = "tchap-identite-client"
-// const CALLBACK_URL = "/cb"
-
 const urlCallback = "/cb";
 
 const getClient = async () => {
@@ -43,6 +32,7 @@ export const homeController: RequestHandler = async (req, res) => {
 
     return res.render('home', {
         loginUrl: appUrl + '/login',
+        emailDefault : process.env.EMAIL_DEFAULT || "aaa.bbb@beta.gouv.fr",
         userEmail
     });
 };
