@@ -1,27 +1,19 @@
-<%- include('partials/header.ejs'); %>
-<%- include('partials/menu.ejs', {userEmail: userEmail}); %>
+<%- include('partials/header.ejs'); %> <%- include('partials/menu.ejs',
+{userEmail: userEmail}); %>
 <div>
-    <% if (!userEmail) { %>
-        <div class="login-card">
-            <div class="fr-card">
-                <div class="fr-card__body">
-                    <div class="fr-card__content">
-                        <form action="<%= loginUrl %>" method="get">
-
-                            <label class="fr-label" for="email">Se logguer avec un email</label>
-                            <input class="fr-input" type="email" id="email" name="email" required value="<%= emailDefault %>">
-
-                            <button class="fr-btn" type="submit">
-                                Se connecter
-                            </button>
-                        </form>
-                    </div>
-                </div>
+  <% if (!userEmail) { %>
+    <div class="fr-card">
+        <div class="fr-card__body">
+        <div class="fr-card__content">
+            <div>
+            Authentification est un service qui permet aux agents et agentes de
+            l'état de pouvoir s'identifier à différents services numériques
+            grâce à un code reçu par email ou par Tchap. Si vous êtes intéressé·e·s
+            par ce service et que vous souhaitez l'ajouter à votre site, merci de nous contacter à l'adresse mail <a href="mailto:authentification@beta.gouv.fr">authentification@beta.gouv.fr</a>
             </div>
         </div>
-    <% } %>
+        </div>
+    </div>
+  <% } %>
 </div>
 <%- include('partials/footer.ejs') %>
-
-
-
